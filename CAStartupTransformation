@@ -1,12 +1,16 @@
-#My code
-expense_overview = pd.read_csv('expenses.csv')
+#My code just changes all proportion names to 'other rather tan combining them.
+expense_overview = pd.read_csv('expenses.csv')
 
-proportion = expense_overview['Proportion']
+proportion = expense_overview['Proportion']
 
-mask = expense_overview.isin(proportion[proportion < 0.05].index)
+mask = expense_overview.Proportion.isin(proportion[proportion < 0.05]).index
 
-expense_overview[mask] = 'Other'
+print(mask)
 
+expense_overview.Expense[mask] = 'Other'
+
+#I was also able to do it in one line
+expense_overview.Expense[expense_overview.Proportion < 0.05] = 'Other'
 
 #Their code
 
