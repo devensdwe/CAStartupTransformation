@@ -1,0 +1,21 @@
+#My code
+expense_overview = pd.read_csv('expenses.csv')
+
+proportion = expense_overview['Proportion']
+
+mask = expense_overview.isin(proportion[proportion < 0.05].index)
+
+expense_overview[mask] = 'Other'
+
+
+#Their code
+
+# read in data
+election_data = pd.read_csv('election_data.csv')
+ 
+# get the counts for each candidate
+votes = election_data['Vote'].value_counts()
+
+mask = election_data.isin(votes[votes < 200].index)
+election_data[mask] = 'Other'
+print(election_data['Vote'].value_counts())
